@@ -2,8 +2,9 @@
 // Read more about them at https://doc.rust-lang.org/std/convert/trait.AsRef.html
 // and https://doc.rust-lang.org/std/convert/trait.AsMut.html, respectively.
 // Execute `rustlings hint as_ref_mut` or use the `hint` watch subcommand for a hint.
+use std::ops::Mul;
+use std::ops::MulAssign;
 
-// I AM NOT DONE
 
 // Obtain the number of bytes (not characters) in the given argument
 // Add the AsRef trait appropriately as a trait bound
@@ -19,8 +20,8 @@ fn char_counter<T: AsRef<str>>(arg: T) -> usize {
 
 // Squares a number using as_mut(). Add the trait bound as is appropriate and
 // implement the function body.
-fn num_sq<T: AsRef<u32>, U>(arg: &mut T) where T: AsMut<U> {
-    *arg.as_mut() = (arg.as_mut()) * (arg.as_mut())
+fn num_sq<T: AsRef<u32> + AsMut<u32>>(mut arg: T) {
+    *arg.as_mut() = arg.as_ref().mul(arg.as_ref());
 }
 
 #[cfg(test)]
